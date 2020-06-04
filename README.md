@@ -1,1 +1,2 @@
-# atlas-defi
+# atlas-defi: Description
+Atlas is a decentralized cryptocurrency loan platform for executing transfers without requiring large amounts of cryptocurrency as collateral from the borrower. Anonymous distributed nodes can decide which loan contracts suit their needs (based on interest, time of payouts, credibility of the borrower, etc.), and choose contracts based on which third-party verifier meets their criteria.
