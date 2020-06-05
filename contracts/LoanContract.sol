@@ -17,12 +17,12 @@ contract LoanContract {
     //     uint loaner_count; // weight is accumulated by delegation
        
     // }
-  
+    receive() payable {};
     function addLoaner(address payable loaner) external payable {
         loaner = payable(msg.sender);
         //@requires: loaner address as payable, msg.value to be the correct amount of ether, and msg.sender not already in loaners array
         //@effects: desposits appropriate portion of loan value to the contract from loaner
-        require(msg.value == 10 ether, "incorrect loan deposit amount!" );
+        require(msg.value == 100 ether, "incorrect loan deposit amount!" );
         require(loaner != borrower_addr, "Cannot Loan to Self");
         require(loaners.length < max_loaners, "Loaner queue is already full.");
         bool loaner_bool = true;
@@ -34,13 +34,14 @@ contract LoanContract {
         require((payable(address(this)).send(100 ether)), "incorrect value sent");
         balance += 100;
         loaners.push(loaner);
-        if (balance == loan_value && borrower_addr != "unfilled) {
+        if (balance == loan_value && borrower_addr != "0x0") {
             BPayout();
         }
     }
     function addBorrower(address payable borrower_addr) external {
-
-
+        require(borrower_addr == "0x0");
+        require(payout == false);
+        
 
     }
 
