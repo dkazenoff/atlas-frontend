@@ -8,14 +8,15 @@ export default function NavComponent() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <Nav.Link href="#home">Account</Nav.Link>
+                    <Nav.Link href="#link">Help</Nav.Link>
+                    <NavDropdown title="Filter Contracts" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Highest to Lowest Loan Value</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">Highest to Lowest Rates</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">Lowest to Highest Loan Value</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.4">Lowest to Highest Rate</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.5">Separated link</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 <Form inline>
