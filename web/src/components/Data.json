@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "loan_value": 50,
+        "rate": 20,
+        "time": 12,
+        "contract_addr": "0x3aa73haa65sd6s6da"
+    },
+    {
+        "id": 2,
+        "loan_value": 100,
+        "rate": 10,
+        "time": 24,
+        "contract_addr": "0x0"
+    },
+    {
+        "id": 3,
+        "loan_value": 100,
+        "rate": 30,
+        "time": 36,
+        "contract_addr": "0x0"
+    },
+    {
+        "id": 4,
+        "loan_value": 500,
+        "rate": 20,
+        "time": 36,
+        "contract_addr": "0x0"
+    }
+]

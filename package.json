@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "ethers": "^4.0.47",
+    "web3": "^1.2.8",
+    "web3-react": "^5.0.5"
+  }
+}
