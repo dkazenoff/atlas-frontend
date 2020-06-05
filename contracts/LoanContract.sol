@@ -1,17 +1,17 @@
 pragma solidity >=0.4.22 <0.7.0;
-
+import "github.com/oraclize/ethereum-api/provableAPI.sol";
 /// @title Voting with delegation.
-contract LoanContract {
-    //bytes32 constant myHash = keccak256("hash_of_verifications"); 
-
-    uint constant loan_value = 100;     //ETH
-    uint constant loan_percent = 10;    //%   
+contract LoanContract is usingProvable {
+    uint constant loan_value = 50;     //ETH
+    uint constant loan_percent = 20;    //%   
     uint constant timeframe = 12;       //months
     uint constant max_loaners = 1;     //10, etc...
     uint balance = 0;
     address payable public borrower_addr;
     address payable[] public loaners;   //receive the interest payouts
     bool payout = false;
+
+    event LogNewProvableQuery(string description);
    
     //  struct Loaner {  // It will represent a single Loander.
     //     uint loaner_count; // weight is accumulated by delegation
@@ -31,18 +31,19 @@ contract LoanContract {
         }
         require(loaner_bool == true, "Address already in loaner queue.");
                                     //loan_value / max_loaners,
-        require((payable(address(this)).send(100 ether)), "incorrect value sent");
+        require((payable(address(this)).send(60 ether)), "incorrect value sent");
         balance += 100;
         loaners.push(loaner);
         if (balance == loan_value && borrower_addr != "0x0") {
             BPayout();
         }
     }
-    function addBorrower(address payable borrower_addr) external {
-        require(borrower_addr == "0x0");
-        require(payout == false);
-        
 
+    function addBorrower(address payable borrower_addr) external {
+        // require(borrower_addr == "0x0");
+        provable_query("URL", "(https://b8f7b1a99511.ngrok.io/datas/dummy2)",
+                '{"addr": msg.sender}')
+        require(payout == false);
     }
 
     function BPayout() external payable {
