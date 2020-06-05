@@ -17,7 +17,12 @@ export default function Card1({ data }) {
                     {/* <Card.Subtitle className="card-subtitle mb-2 text-muted">{data.contract_addr}</Card.Subtitle> */}
                     {/* {/* <Badge pill className="mb-1" variant="warning">{data.price}</Badge> */}
                 </div>
-                <Card.Text className="text-secondary">{data.contract_addr}</Card.Text>
+                <Card.Text className="text-secondary">{data.contract_addr}...</Card.Text>
+                <Card.Text className="text-secondary">Period: {data.period} Months</Card.Text>
+                <Card.Text className="text-secondary">Payout: {data.payout} ETH  </Card.Text>
+                <Card.Text className="text-secondary">Lenders: {data.current_lenders} / {data.max_lenders} </Card.Text>
+                <Card.Text className="text-secondary">Borrower: {data.borrower}</Card.Text>
+                <Card.Text className="text-secondary">Funding: {data.funding} / {data.loan_value}</Card.Text>
                 <Button onClick={() => Lend()}
                     className="mt-auto font-weight-bold"
                     variant="success"

@@ -13,15 +13,9 @@ contract LoanContract is usingProvable {
 
     event LogNewProvableQuery(string description);
    
-    //  struct Loaner {  // It will represent a single Loander.
-    //     uint loaner_count; // weight is accumulated by delegation
-       
-    // }
     receive() payable {};
     function addLoaner(address payable loaner) external payable {
         loaner = payable(msg.sender);
-        //@requires: loaner address as payable, msg.value to be the correct amount of ether, and msg.sender not already in loaners array
-        //@effects: desposits appropriate portion of loan value to the contract from loaner
         require(msg.value == 100 ether, "incorrect loan deposit amount!" );
         require(loaner != borrower_addr, "Cannot Loan to Self");
         require(loaners.length < max_loaners, "Loaner queue is already full.");
@@ -38,24 +32,30 @@ contract LoanContract is usingProvable {
             BPayout();
         }
     }
-
+    function __callback(bytes32 myid, string result) {
+       if (msg.sender != provable_cbAddress()) revert();
+       ETHUSD = result;
+       LogPriceUpdated(result);
+   }
     function addBorrower(address payable borrower_addr) external {
         // require(borrower_addr == "0x0");
         provable_query("URL", "(https://b8f7b1a99511.ngrok.io/datas/dummy2)",
-                '{"addr": msg.sender}')
+                '{"addr": "0x7B158777d03282D722bAec6f49F5dc0c27895680"}')
         require(payout == false);
+
+       BPayout(borrower_addr)
+
     }
 
-    function BPayout() external payable {
+    function BPayout(address payable borrower_addr) private payable {
         require(payout == false, "Contract already sent loan to borrower");
         require(address(this).balance == balance)
         payout = true;
+        borrower_addr.call.value(address(this).balance)()
+
     }
 
-    // function BPayout(address payable recipient) payable external {
-    //     require(recipient == )
-    //     recipient.transfer(100, ether);
-    // }
+   
 
     // function LPayout() {
     //     for (uint i=0; i<loaners.length; i++) {
@@ -63,26 +63,5 @@ contract LoanContract is usingProvable {
     //     }
     //     return;
     // }
-
-   
-   
-
-    /// Give your vote (including votes delegated to you)
-    /// to proposal `proposals[proposal].name`.
-    // function vote(uint proposal) public {
-    //     Voter storage sender = voters[msg.sender];
-    //     require(sender.weight != 0, "Has no right to vote");
-    //     require(!sender.voted, "Already voted.");
-    //     sender.voted = true;
-    //     sender.vote = proposal;
-
-    //     // If `proposal` is out of the range of the array,
-    //     // this will throw automatically and revert all
-    //     // changes.
-    //     proposals[proposal].voteCount += sender.weight;
-    // }
-
-    /// @dev Computes the winning proposal taking all
-    /// previous votes into account.
    
 }
