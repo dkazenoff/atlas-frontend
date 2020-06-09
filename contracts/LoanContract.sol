@@ -1,5 +1,6 @@
 pragma solidity >=0.4.22 <0.7.0;
-import "github.com/oraclize/ethereum-api/provableAPI.sol";
+//import "github.com/oraclize/ethereum-api/provableAPI.sol";
+import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
 /// @title Voting with delegation.
 contract LoanContract is usingProvable {
     uint constant loan_value = 50;     //ETH
@@ -13,7 +14,9 @@ contract LoanContract is usingProvable {
 
     event LogNewProvableQuery(string description);
    
-    receive() payable {};
+   receive() external payable { 
+
+    }
     function addLoaner(address payable loaner) external payable {
         loaner = payable(msg.sender);
         require(msg.value == 100 ether, "incorrect loan deposit amount!" );
@@ -40,18 +43,18 @@ contract LoanContract is usingProvable {
     function addBorrower(address payable borrower_addr) external {
         // require(borrower_addr == "0x0");
         provable_query("URL", "(https://b8f7b1a99511.ngrok.io/datas/dummy2)",
-                '{"addr": "0x7B158777d03282D722bAec6f49F5dc0c27895680"}')
-        require(payout == false);
+                '{"addr": "0x7B158777d03282D722bAec6f49F5dc0c27895680"}');
+        require(payout == false, "payout already occurred");
 
-       BPayout(borrower_addr)
+       BPayout(borrower_addr);
 
     }
 
     function BPayout(address payable borrower_addr) private payable {
         require(payout == false, "Contract already sent loan to borrower");
-        require(address(this).balance == balance)
+        require(address(this).balance == balance);
         payout = true;
-        borrower_addr.call.value(address(this).balance)()
+        require(borrower_addr.send.value(address(this).balance)(), "Improper values sent");
 
     }
 

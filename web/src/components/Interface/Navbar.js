@@ -18,6 +18,7 @@ export default function NavComponent() {
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.5">Separated link</NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link href="#home">Create Contracts</Nav.Link>
                 </Nav>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
