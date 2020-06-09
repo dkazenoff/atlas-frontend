@@ -1,6 +1,5 @@
 pragma solidity >=0.4.22 <0.7.0;
-//import "github.com/oraclize/ethereum-api/provableAPI.sol";
-import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
+import "github.com/oraclize/ethereum-api/provableAPI.sol";
 /// @title Voting with delegation.
 contract LoanContract is usingProvable {
     uint constant loan_value = 50;     //ETH
@@ -13,10 +12,17 @@ contract LoanContract is usingProvable {
     bool payout = false;
 
     event LogNewProvableQuery(string description);
+    event LogResult(string result);
    
    receive() external payable { 
 
     }
+    function __callback(
+        bytes32 _myid,
+        string memory _result,
+        bytes memory _proof
+    )
+
     function addLoaner(address payable loaner) external payable {
         loaner = payable(msg.sender);
         require(msg.value == 100 ether, "incorrect loan deposit amount!" );
@@ -40,7 +46,7 @@ contract LoanContract is usingProvable {
        ETHUSD = result;
        LogPriceUpdated(result);
    }
-    function addBorrower(address payable borrower_addr) external {
+    function addBorrower(address payable borrower_addr) payable external {
         // require(borrower_addr == "0x0");
         provable_query("URL", "(https://b8f7b1a99511.ngrok.io/datas/dummy2)",
                 '{"addr": "0x7B158777d03282D722bAec6f49F5dc0c27895680"}');
