@@ -9,22 +9,23 @@ const { InjectedConnector, NetworkOnlyConnector } = Connectors
 const MetaMask = new InjectedConnector({ supportedNetworks: [1, 4] })
 
 const Infura = new NetworkOnlyConnector({
-  providerURL: 'https://mainnet.infura.io/v3/...'
+  // providerURL: 'https://mainnet.infura.io/v3/...'
 })
 
 const connectors = { MetaMask, Infura }
 
 function App() {
+  // web3 = new Web3(new Web3.providers.HttpProvider("http://ropsten.infura.io/"));
   return (
     <div className="App">
       <ContractEngine />
-      <Web3Provider
+      {/* <Web3Provider
         // connectors={...}
         libraryName={'ethers.js' | 'web3.js' | null}
 
       >
 
-      </Web3Provider>
+      </Web3Provider> */}
     </div>
   );
 }
