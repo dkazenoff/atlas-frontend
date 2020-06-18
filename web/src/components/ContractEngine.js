@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Card1 from "./Interface/Card";
 import NavComponent from "./Interface/Navbar"
 import datas from './Data';
+import Prelim from './Interface/Prelim';
 
 
 export default function ContractEngine() {

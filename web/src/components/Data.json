@@ -1,19 +1,20 @@
 [
     {
         "id": 1,
-        "loan_value": 50,
-        "rate": 20,
+        "loan_value": 20,
+        "rate": 10,
         "period": 12,
         "contract_addr": "0x3aa73haa65sd6s6da",
         "payout": 60,
         "current_lenders": 0,
         "max_lenders": 5,
-        "funding": 0
+        "funding": 0,
+        "borrower": "unfilled"
     },
     {
         "id": 2,
-        "loan_value": 100,
-        "rate": 10,
+        "loan_value": 20,
+        "rate": 13,
         "period": 24,
         "contract_addr": "0x0",
         "payout": 110,
@@ -24,8 +25,8 @@
     },
     {
         "id": 3,
-        "loan_value": 100,
-        "rate": 30,
+        "loan_value": 20,
+        "rate": 20,
         "period": 36,
         "contract_addr": "0x0",
         "payout": 130,
@@ -36,8 +37,8 @@
     },
     {
         "id": 4,
-        "loan_value": 500,
-        "rate": 20,
+        "loan_value": 20,
+        "rate": 30,
         "period": 36,
         "contract_addr": "0x0",
         "payout": 550,
