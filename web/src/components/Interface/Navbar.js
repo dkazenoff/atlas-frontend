@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Navbar, Nav, Form, FormControl, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
+
 export default function NavComponent() {
     return (
         <Navbar bg="light" expand="lg">
@@ -8,7 +9,7 @@ export default function NavComponent() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Account</Nav.Link>
+                    <Nav.Link href="/Prelim">Account</Nav.Link>
                     <Nav.Link href="#link">Help</Nav.Link>
                     <NavDropdown title="Filter Contracts" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Highest to Lowest Loan Value</NavDropdown.Item>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default function Card1({ data }) {
     function Borrow() {
@@ -9,7 +10,7 @@ export default function Card1({ data }) {
 
     }
     return (
-        <Card className="h-100 shadow-sm bg-white rounded">
+        <Card className="h-100 shadow-sm bg-white rounded mt-4">
             <Card.Body className="d-flex flex-column">
                 <div className="d-flex mb-2 justify-content-between">
                     <Card.Title className="mb-0 font-weight-bold">{data.loan_value} ETH @ {data.rate} % </Card.Title>
@@ -29,12 +30,15 @@ export default function Card1({ data }) {
                     block >
                     Invest
                 </Button>
+                {/* <Link to="/Prelim"> */}
                 <Button onClick={() => Borrow()}
                     className="mt-auto font-weight-bold"
                     variant="primary"
                     block >
                     Borrow
                 </Button>
+                {/* </Link> */}
+
             </Card.Body>
 
         </Card>
