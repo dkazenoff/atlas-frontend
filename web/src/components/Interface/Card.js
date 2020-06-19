@@ -1,10 +1,13 @@
 import React from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Router, Switch, Route, useHistory } from "react-router-dom";
+
 
 export default function Card1({ data }) {
-    function Borrow() {
-
+    const history = useHistory();
+    const routeChange = () => {
+        let path = "/borrow";
+        history.push(path);
     }
     function Lend() {
 
@@ -30,11 +33,11 @@ export default function Card1({ data }) {
                     block >
                     Invest
                 </Button>
-                {/* <Link to="/Prelim"> */}
-                <Button onClick={() => Borrow()}
+                {/* <Link to="/borrow"> */}
+                <Button type="submit"
                     className="mt-auto font-weight-bold"
                     variant="primary"
-                    block >
+                    block onClick={routeChange}>
                     Borrow
                 </Button>
                 {/* </Link> */}
