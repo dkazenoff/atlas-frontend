@@ -7,7 +7,7 @@ export default function Card1({ data }) {
     const history = useHistory();
     const routeChange = () => {
         let path = "/borrow";
-        history.push(path);
+        history.push(path, data);
     }
     function Lend() {
 
