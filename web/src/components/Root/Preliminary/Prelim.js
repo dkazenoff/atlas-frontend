@@ -12,9 +12,9 @@ export default function Prelim() {
         history.push(path);
     }
     return (
-        <div d-flex mb-2 justify-content-between>
+        <div d-flex="true" mb-2="true" justify-content-between="true">
             <NavComponent />
-            <Jumbotron fluid bg-primary text-white>
+            <Jumbotron fluid="true" bg-primary="true" text-white="true">
                 <Container >
                     {/* <div className="container" bg-primary text-white> */}
                     <h1>Making Collateral-Free Crypto Loans a Reality</h1>
@@ -32,7 +32,7 @@ export default function Prelim() {
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicPassword">
                     <Form.Label>Approximate Annual Salary:</Form.Label>
                     <Form.Control type="text" placeholder="$1000000" />
                 </Form.Group>
