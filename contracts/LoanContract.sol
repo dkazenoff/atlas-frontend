@@ -6,10 +6,13 @@ contract LoanContract {
     // uint public balance;
     uint public num_lenders;
     
-    function getBalance() public returns (uint) {
+    function getNumLenders() public view returns (uint) {
+      return num_lenders;
+    }
+    function getContractBalance() public returns (uint) {
         return address(this).balance;
     }
-     function AddLender() payable public {
+     function addLender() payable public {
     //   balance = address(this).balance;
       num_lenders += 1;
   }
