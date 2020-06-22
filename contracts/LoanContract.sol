@@ -9,7 +9,7 @@ contract LoanContract {
     function getNumLenders() public view returns (uint) {
       return num_lenders;
     }
-    function getContractBalance() public returns (uint) {
+    function getContractBalance() public view returns (uint) {
         return address(this).balance;
     }
      function addLender() payable public {
