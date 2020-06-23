@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
 import { Router, Switch, Route, useHistory } from "react-router-dom";
 import Web3 from 'web3';
+const web3 = new Web3(window.ethereum);
+
 
 export default function Card1({ data }) {
     const history = useHistory();
@@ -9,8 +11,9 @@ export default function Card1({ data }) {
         let path = "/borrow";
         history.push(path, data);
     }
-    function Lend() {
-        alert("Hello lender!");
+    async function Lend() {
+        await window.ethereum.enable();
+        alert(`Are you sure you want to lend ${data.loanvalue / data.max_lenders} for a ${data.rate} return?`);
     }
     return (
         <Card className="h-100 shadow-sm bg-white rounded mt-4">

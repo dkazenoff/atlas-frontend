@@ -1,11 +1,11 @@
 [
     {
         "id": 1,
-        "loan_value": 20,
+        "loan_value": 5,
         "rate": 10,
         "period": 12,
         "contract_addr": "0x3aa73haa65sd6s6da",
-        "payout": 22,
+        "payout": 6,
         "current_lenders": 0,
         "max_lenders": 5,
         "funding": 0,

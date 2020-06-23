@@ -34,7 +34,7 @@ contract LoanContract is usingProvable {
     }
   function addLender(address payable _addr) payable public {
     //change _addr to msg.sender for deployment&remove _addr param. Using _addr for easy testing
-    require(msg.value ==1 ether, "Incorrect deposit value");
+    require(msg.value == 1 ether, "Incorrect deposit value");
     require(lenders.length < max_lenders,"Max number lenders already committed");
     for (uint16 i = 0; i<lenders.length; i++) {
       require(lenders[i] != payable(_addr), "Cannot lend multiple times!");
@@ -43,15 +43,30 @@ contract LoanContract is usingProvable {
     lenders.push(_addr);
   }
    function __callback(bytes32 myid, string memory result) public override{
-      emit LogNewProvableQuery("inside callback.");
-       if (msg.sender != provable_cbAddress()) revert();
+      mit LogNewProvableQuery("inside callback.");
+      if (msg.sender != provable_cbAddress()) revert();
     //   ETHUSD = result;
-        b_eligible = result;
-       LogBoolUpdated(result);
-       emit LogNewProvableQuery("finished callback.");
+      b_eligible = result;
+      LogBoolUpdated(result);
+      if (keccak256(abi.encodePacked(b_eligible)) == keccak256(abi.encodePacked("true")) ) {
+        borrower == msg.sender;
+        BPAYOUT(borrower);
+      }
+
+      emit LogNewProvableQuery("finished callback.");
    }
-  function addBorrower() public {
+  function addBorrower(string encrypted, string uuid) public {
     emit LogNewProvableQuery("inside AddBorrower.");
     require(borrower == payable(0x0), "Borrower already added. Contract is full");
+  
+  emit LogNewProvableQuery("Provable query was sent, standing by for the answer..");
+       //Replace below URL with whatever your public ngrok tunnel URL is 
+  provable_query("URL", strConcat("json(https://20c91ffbe461.ngrok.io/encryption/dekyc?pubkey=",encrypted,"&uuid=",timestamp,").score"));
+  borrower = msg.sender;
   }
+  function BPAYOUT(payable address _addr) {
+    require(_addr==borrower, "Error with BPAYOUT Function");
+    _addr.transfer(address(this).balance);
+  }
+
 }

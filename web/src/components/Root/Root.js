@@ -18,6 +18,7 @@ const Root = () => {
                 <Route component={ContractEngine} path="/home" />
                 <Route exact component={Prelim} path="/" />
                 <Route component={Borrower} path="/borrow" />
+                {/* <Route component={Borrower} path="/b-home" /> */}
 
             </Switch>
         </div>
