@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
 import { Router, Switch, Route, useHistory } from "react-router-dom";
-
+import Web3 from 'web3';
 
 export default function Card1({ data }) {
     const history = useHistory();
@@ -10,7 +10,7 @@ export default function Card1({ data }) {
         history.push(path, data);
     }
     function Lend() {
-
+        alert("Hello lender!");
     }
     return (
         <Card className="h-100 shadow-sm bg-white rounded mt-4">
@@ -30,7 +30,7 @@ export default function Card1({ data }) {
                 <Button onClick={() => Lend()}
                     className="mt-auto font-weight-bold"
                     variant="success"
-                    block >
+                    block>
                     Invest
                 </Button>
                 {/* <Link to="/borrow"> */}
