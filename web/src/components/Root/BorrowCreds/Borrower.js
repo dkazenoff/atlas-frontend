@@ -8,6 +8,10 @@ import './../../../App.css';
 import "react-datepicker/dist/react-datepicker.css";
 import bcontract from './bcontract';
 import Jumbotron from 'react-bootstrap/Jumbotron';
+//Web3 functions; Initializing contract in the same step
+import Web3 from 'web3';
+// const web3 = new Web3(window.ethereum);
+
 
 export default function Borrower(props) {
     const { value: fname, bind: bindfname, reset: resetfname } = useInput('');
@@ -21,11 +25,12 @@ export default function Borrower(props) {
     // const [startDate, setStartDate] = useState(new Date());
     const history = useHistory();
     const location = useLocation();
-    const contract = location.state;
+    const contract = location.state;        //contract.addr etc.
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        alert(`Submitting ${fname}'s Credentials for Loan Approval....${dob}`);
+        window.confirm(`Submitting ${fname}'s Credentials for Loan Approval....${dob}`);
         resetfname(); resetlname(); resetphone(); resetemail(); resetdob(); resetssn(); resetgrossincome();
         const credentials = {
             fname: fname,
@@ -36,10 +41,10 @@ export default function Borrower(props) {
             ssn: ssn,
             grossincome: grossincome
         }
-
+        // await window.ethereum.enable();
         let path = "/home";
         history.push(path);
-        bcontract.encrypt(credentials);
+        let encryptedString = await bcontract.encrypt(credentials);
     }
 
     // const routeChange = () => {
