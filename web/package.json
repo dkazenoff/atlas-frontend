@@ -7,13 +7,19 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@web3-react/core": "^6.0.9",
+    "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "create-react-class": "^15.6.3",
+    "neo4j-driver": "^4.0.2",
+    "node-rsa": "^1.0.8",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
+    "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "web3": "^1.2.9"
   },
   "scripts": {
     "start": "react-scripts start",

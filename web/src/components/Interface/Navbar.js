@@ -5,7 +5,7 @@ import { Button, Navbar, Nav, Form, FormControl, NavItem, NavDropdown, MenuItem 
 export default function NavComponent() {
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">Atlas DeFi!</Navbar.Brand>
+            <Navbar.Brand href="/home">Atlas DeFi!</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

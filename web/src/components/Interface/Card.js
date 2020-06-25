@@ -1,13 +1,65 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Router, Switch, Route, useHistory } from "react-router-dom";
+// import { useWeb3Context } from 'web3-react'
+import getWeb3 from './getWeb3';
+import Web3 from "web3"
+import ABI from './ABI'
+
 
 export default function Card1({ data }) {
-    function Borrow() {
+    let contract;
+    // const context = useWeb3Context()
 
+    // useEffect(() => {
+    //     context.setFirstValidConnector(['MetaMask'])
+    // }, [])
+
+    const history = useHistory();
+    const routeChangeB = () => {
+        let path = "/borrow";
+        history.push(path, { data, ...contract });
     }
-    function Lend() {
+    // async function LoadWeb3() {
+    //     // Load WEB3
+    //     // Check wether it's already injected by something else (like Metamask or Parity Chrome plugin)
+    //     if (typeof web3 !== 'undefined') {
+    //         web3 = new Web3(web3.currentProvider);
 
+    //         // Or connect to a node
+    //     } else {
+    //         web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    //     }
+
+    //     // Check the connection
+    //     if (!web3.isConnected()) {
+    //         console.error("Not connected");
+
+    //     }
+
+    //     return web3.eth.accounts[3];
+    // }
+    async function Lend() {
+        // await window.ethereum.enable();
+        console.log("waiting.....")
+        window.confirm(`Are you sure you want to lend ${data.loan_value / data.max_lenders} ETH for a ${data.rate}% return?`);
+        const web3 = await getWeb3();
+        if (!web3) { console.error("Error retrieving getWeb3!"); return; }
+        console.log("WEB3:", web3)
+
+        // web3.eth.defaultAccount = web3.eth.accounts[4]
+        web3.eth.defaultAccount = window.web3.eth.defaultAccount
+        let LoanContract = new web3.eth.Contract(ABI)
+        LoanContract.options.address = '0x27378A2f80438e975Ce4eB9C380FE6f15162Adee';
+        console.log("LOANContract:", LoanContract)
+        await LoanContract.methods.addLender('0xB56f6eb0Cbf0fed21f9A27bd4d4660C0BE9E92db').send({ 'from': '0xB56f6eb0Cbf0fed21f9A27bd4d4660C0BE9E92db', 'value': web3.utils.toBN(5e+18) });
+
+        // console.log("afterwards")
+        //Check that contract wasn't already created...
+        // contract = new web3.eth.Contract(data.abi, data.contract_addr)
+        //data.loan_value / data.max_lenders ->converted toBN e+18
+        // let account = await LoadWeb3();
+        // await contract.addLender(account, { 'value': web3.utils.toBN(5e+18) });
     }
     return (
         <Card className="h-100 shadow-sm bg-white rounded mt-4">
@@ -27,14 +79,14 @@ export default function Card1({ data }) {
                 <Button onClick={() => Lend()}
                     className="mt-auto font-weight-bold"
                     variant="success"
-                    block >
+                    block>
                     Invest
                 </Button>
-                {/* <Link to="/Prelim"> */}
-                <Button onClick={() => Borrow()}
+                {/* <Link to="/borrow"> */}
+                <Button type="submit"
                     className="mt-auto font-weight-bold"
                     variant="primary"
-                    block >
+                    block onClick={routeChangeB}>
                     Borrow
                 </Button>
                 {/* </Link> */}

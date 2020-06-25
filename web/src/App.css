@@ -27,7 +27,27 @@
 .App-link {
   color: #61dafb;
 }
-
+.jumbotron {
+  background-color: #0275d8;
+  color: white;
+}
+.button-prelim {
+  /* padding-left: 80px; */
+  position: absolute;
+  left: 20%;
+}
+.borrower {
+  padding-right: 300px;
+  /* padding-bottom: 50px; */
+  padding-left: 80px;
+  margin-top: 10px;
+}
+.form-group {
+  /* padding-top: 50px; */
+  padding-right: 300px;
+  /* padding-bottom: 50px; */
+  padding-left: 80px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -5,7 +5,6 @@ import './../../../App.css';
 import Card1 from "../../Interface/Card";
 import NavComponent from "../../Interface/Navbar"
 import datas from './Data';
-import Prelim from '../../Interface/Prelim';
 
 
 export default function ContractEngine() {
