@@ -9,8 +9,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import bcontract from './bcontract';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 //Web3 functions; Initializing contract in the same step
-import Web3 from 'web3';
-// const web3 = new Web3(window.ethereum);
+import Web3 from "web3";
+import getWeb3 from './../../Interface/getWeb3';
+import ABI from './../..//Interface/ABI';
 
 
 export default function Borrower(props) {
@@ -44,7 +45,40 @@ export default function Borrower(props) {
         // await window.ethereum.enable();
         let path = "/home";
         history.push(path);
+        if (contract.contract == 0) {
+            console.log("contract not initiailized yet")
+            alert("Contract has not been initialized By Lender Yet. Please Try Again Later");
+            return;
+        }
+        let uuid = Date.now().toString();
+        credentials.uuid = uuid
         let encryptedString = await bcontract.encrypt(credentials);
+
+        const web3 = await getWeb3();
+        if (!web3) { console.error("Error retrieving getWeb3!"); return; }
+        console.log("WEB3:", web3)
+        web3.eth.defaultAccount = window.web3.eth.defaultAccount
+        let LoanContract = new web3.eth.Contract(ABI)
+        LoanContract.options.address = '0x684D1C91e5b3a4A102D9d1C1811f0F07A556a853';
+        console.log("BContractmethods:", LoanContract.methods);
+        // contract.web3obj.givenProvider.selectedAddress   -->Does this grab the currently active Metamask Account???
+        console.log("BEFORE:\n")
+        console.log("NUM LENDERS:");
+        try { let num = await LoanContract.methods.num_lenders().call(); console.log(num) } catch (err) { console.log(err) }
+        console.log("BorrowerAddr:")
+        try { let bor = await LoanContract.methods.borrower().call(); console.log(bor) } catch (err) { console.log(err) }
+        console.log("Elibibility:")
+        try { let elig = await LoanContract.methods.b_eligible().call(); console.log(elig) } catch (err) { console.log(err) }
+
+        try { await LoanContract.methods.addBorrower(encryptedString, uuid); console.log("CALLED ADDBORROWER") } catch (err) { console.log(err) }
+
+        console.log("AFTER:\n");
+        console.log("NUM LENDERS:");
+        try { let num = await LoanContract.methods.num_lenders().call(); console.log(num) } catch (err) { console.log(err) }
+        console.log("BorrowerAddr:")
+        try { let bor = await LoanContract.methods.borrower().call(); console.log(bor) } catch (err) { console.log(err) }
+        console.log("Elibibility:")
+        try { let elig = await LoanContract.methods.b_eligible().call(); console.log(elig) } catch (err) { console.log(err) }
     }
 
     // const routeChange = () => {

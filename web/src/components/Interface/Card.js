@@ -8,7 +8,8 @@ import ABI from './ABI'
 
 
 export default function Card1({ data }) {
-    let contract;
+    let contractobj = 0;
+    let web3obj = 0;
     // const context = useWeb3Context()
 
     // useEffect(() => {
@@ -18,7 +19,11 @@ export default function Card1({ data }) {
     const history = useHistory();
     const routeChangeB = () => {
         let path = "/borrow";
-        history.push(path, { data, ...contract });
+        // if (contractobj != 0 && web3obj != 0) {
+        //     data.contract = contractobj;
+        //     data.web3obj = web3obj;
+        // }
+        history.push(path, { state: data });   //merge the objects together.
     }
     // async function LoadWeb3() {
     //     // Load WEB3
@@ -46,14 +51,20 @@ export default function Card1({ data }) {
         const web3 = await getWeb3();
         if (!web3) { console.error("Error retrieving getWeb3!"); return; }
         console.log("WEB3:", web3)
-
+        web3obj = web3;
         // web3.eth.defaultAccount = web3.eth.accounts[4]
         web3.eth.defaultAccount = window.web3.eth.defaultAccount
         let LoanContract = new web3.eth.Contract(ABI)
-        LoanContract.options.address = '0x27378A2f80438e975Ce4eB9C380FE6f15162Adee';
+        LoanContract.options.address = '0x684D1C91e5b3a4A102D9d1C1811f0F07A556a853';
         console.log("LOANContract:", LoanContract)
-        await LoanContract.methods.addLender('0xB56f6eb0Cbf0fed21f9A27bd4d4660C0BE9E92db').send({ 'from': '0xB56f6eb0Cbf0fed21f9A27bd4d4660C0BE9E92db', 'value': web3.utils.toBN(5e+18) });
-
+        try {
+            await LoanContract.methods.addLender('0xB56f6eb0Cbf0fed21f9A27bd4d4660C0BE9E92db').send({ 'from': '0xB56f6eb0Cbf0fed21f9A27bd4d4660C0BE9E92db', 'value': web3.utils.toBN(5e+18) });
+            data.current_lenders++;
+        }
+        catch (err) {
+            console.log("Error Caught:", err)
+        }
+        contractobj = LoanContract;
         // console.log("afterwards")
         //Check that contract wasn't already created...
         // contract = new web3.eth.Contract(data.abi, data.contract_addr)
