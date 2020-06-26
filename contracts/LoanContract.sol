@@ -21,7 +21,7 @@ contract LoanContract is usingProvable {
     event LogBoolUpdated(string description);
 
     constructor() public {
-    OAR = OracleAddrResolverI(0xfFC9B597e97D3d28Fbcfa661FD91D6CB48Ca00c2);
+    OAR = OracleAddrResolverI(0x1868f74476af3A5Df8b62dD8fd4EeF069bb2Ea76);
     emit LogConstructorInitiated("Constructor was initiated");
     
   }
