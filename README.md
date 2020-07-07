@@ -11,7 +11,7 @@ Currently, the project operates on a local ganache chain. While deploying the co
 6. Next, ethereum-bridge must be installed for the local ethereum blockchain to be able to use the Provable oracle located in the smart contract. run ``ethereum-bridge -H localhost:8545 -a 1`` to launch your ethereum bridge, and take note of the OAR address returned upon running the command. Also read the terminal output for instructions on how to retrieve that same OAR instance for future uses of the client, if re-compilation & migration of the smart contract is not desired.
 7. Take the OAR address returned, and paste only the address into line 24 of the contract above from step 5.
 8. Using the directory opened from step 4, compile, test, and migrate the contract to the local Ganache chain running on port 8545. Take note of the contract ABI produced in ``$...atlas-frontend/build/contracts/LoanContract.json`` for step 9. Ensure all unit tests pass.
-9. Paste the full ABI into the appropriate ABI variable in ``$...atlas-frontend/web/src/components/Interface/ABI.js` 
+9. Paste the full ABI into the appropriate ABI variable in ``$...atlas-frontend/web/src/components/Interface/ABI.js`` 
 10. Save and refresh the running React.js client to reset the state. The application should now run, and have basic MetaMask capabilities. Note that Ganache and MetaMask may lag at this point and values or confirmation windows may not pop up immediately, but loans should transact upon successful borrower and "loan deposit" submissions.
 ### Backend
 1. Clone the Atlas-Backend Repo 
@@ -32,3 +32,11 @@ For an overview of what terminal tabs you need open and the associated run comma
 |atlas-frontend/web|`'npm start'`            |React frontend is launched on localhost:3000            |
 |atlas-frontend          |`truffle compile` or `truffle test` or `truffle migrate`          |Compile, test, or migrate Solidity contracts   
 |atlas-backend          |  `node app.js` | Express server is launched on localhost:8080
+
+## Atlas Interface
+### Pre-Screen page 
+![Entrance Page](./pictures/entrance.png)
+### Suitable Contract Marketplace
+![Home Page](./pictures/home.png)
+### Borrower Credential Submission for Verification
+![Borrower Loan Request Page](./pictures/borrower_request.png)

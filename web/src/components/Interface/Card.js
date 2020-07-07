@@ -23,7 +23,7 @@ export default function Card1({ data }) {
         //     data.contract = contractobj;
         //     data.web3obj = web3obj;
         // }
-        history.push(path, { state: data });   //merge the objects together.
+        history.push(path, { data });   //merge the objects together.
     }
     // async function LoadWeb3() {
     //     // Load WEB3
@@ -55,7 +55,7 @@ export default function Card1({ data }) {
         // web3.eth.defaultAccount = web3.eth.accounts[4]
         web3.eth.defaultAccount = window.web3.eth.defaultAccount
         let LoanContract = new web3.eth.Contract(ABI)
-        LoanContract.options.address = '0x684D1C91e5b3a4A102D9d1C1811f0F07A556a853';
+        LoanContract.options.address = '0x5A319dd81d6F2E12d04Cdd5CB3b84FFB5ceA73D6';
         console.log("LOANContract:", LoanContract)
         try {
             await LoanContract.methods.addLender('0xB56f6eb0Cbf0fed21f9A27bd4d4660C0BE9E92db').send({ 'from': '0xB56f6eb0Cbf0fed21f9A27bd4d4660C0BE9E92db', 'value': web3.utils.toBN(5e+18) });
