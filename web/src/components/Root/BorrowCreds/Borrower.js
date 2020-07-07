@@ -26,8 +26,7 @@ export default function Borrower(props) {
     // const [startDate, setStartDate] = useState(new Date());
     const history = useHistory();
     const location = useLocation();
-    const contract = location.state;        //contract.addr etc.
-
+    const contract = location.state.data;        //contract.addr etc.
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -59,7 +58,7 @@ export default function Borrower(props) {
         console.log("WEB3:", web3)
         web3.eth.defaultAccount = window.web3.eth.defaultAccount
         let LoanContract = new web3.eth.Contract(ABI)
-        LoanContract.options.address = '0x684D1C91e5b3a4A102D9d1C1811f0F07A556a853';
+        LoanContract.options.address = '0x5A319dd81d6F2E12d04Cdd5CB3b84FFB5ceA73D6';
         console.log("BContractmethods:", LoanContract.methods);
         // contract.web3obj.givenProvider.selectedAddress   -->Does this grab the currently active Metamask Account???
         console.log("BEFORE:\n")
@@ -132,7 +131,7 @@ export default function Borrower(props) {
                 <Form.Row>
                     <Form.Group as={Col} controlId="formGridCity">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control placeholder="myemail@gmailz.com" {...bindemail} />
+                        <Form.Control placeholder="my_email@mail.com" {...bindemail} />
                     </Form.Group>
 
                     {/* <Form.Group as={Col} controlId="formGridState">
